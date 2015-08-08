@@ -1,0 +1,30 @@
+<!doctype html>
+<head>
+<title> Hello OpenStreetMap </title>
+<link rel="stylesheet" href="js/ol/ol.css"
+type="text/css" />
+<link rel="stylesheet" href="js/css/samples.css"
+type="text/css" />
+</head>
+<body>
+<div id="map" class="map"></div>
+<script src="js/ol/ol.js">
+</script>
+<script>
+var osmLayer = new ol.layer.Tile({
+source: new ol.source.OSM()
+});
+var shanghai = ol.proj.transform([121.38, 31.12],
+'EPSG:4326', 'EPSG:3857');
+var view = new ol.View({
+center: shanghai,
+zoom: 12
+});
+var map = new ol.Map({
+target: 'map'
+});
+map.addLayer(osmLayer);
+map.setView(view);
+</script>
+</body>
+</html>
