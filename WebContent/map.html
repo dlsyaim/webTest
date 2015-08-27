@@ -1,0 +1,193 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+<meta name="keywords" content="天地图"/> 
+<title>天地图－地图API－范例－鹰眼控件</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script> 
+	var map,overviewMap,lineTool,polygonTool; 
+	var zoom = 12; 
+	function onLoad() 
+	{ 
+		//初始化地图对象 
+	   	map=new TMap("mapDiv"); 
+	   	//设置显示地图的中心点和级别 
+		map.centerAndZoom(new TLngLat(121.4,31.2),zoom); 
+		//允许鼠标滚轮缩放地图 
+		map.enableHandleMouseScroll();
+		 
+		var config = { 
+			anchor: "TMAP_ANCHOR_BOTTOM_LEFT",	//设置鹰眼位置,"TMAP_ANCHOR_TOP_LEFT"表示左上，"TMAP_ANCHOR_TOP_RIGHT"表示右上，"TMAP_ANCHOR_BOTTOM_LEFT"表示左下，"TMAP_ANCHOR_BOTTOM_RIGHT"表示右下，"TMAP_ANCHOR_LEFT"表示左边，"TMAP_ANCHOR_TOP"表示上边，"TMAP_ANCHOR_RIGHT"表示右边，"TMAP_ANCHOR_BOTTOM"表示下边，"TMAP_ANCHOR_OFFSET"表示自定义位置,默认值为"TMAP_ANCHOR_BOTTOM_RIGHT" 
+			size  : new TSize(180,120),			//鹰眼显示的大小 
+			isOpen : true,						//鹰眼是否打开，true表示打开，false表示关闭，默认为关闭 
+			strokeColor:"blue",	//折线颜色 
+			strokeWeight:"3px",	//折线的宽度，以像素为单位 
+			strokeOpacity:0.5,	//折线的透明度，取值范围0 - 1 
+			strokeStyle:"solid",	//折线的样式，solid或dashed 
+			fillColor:"#FFFFFF",	//填充颜色。当参数为空时，折线覆盖物将没有填充效果 
+			fillOpacity:0.5			//填充的透明度，取值范围0 - 1 
+		}; 
+		//创建鹰眼控件对象 
+		overviewMap = new TOverviewMapControl(config); 
+		//添加鹰眼控件 
+        map.addControl(overviewMap); 
+		
+		var top = 10;
+		var pos = 50;
+		//创建自定义控件，并添加到地图上 
+		//全屏
+        var QpObj = document.getElementById("Qp"); 
+        var QpObjControl = new THtmlElementControl(QpObj); 
+        QpObjControl.setRight(pos); 
+        QpObjControl.setTop(top); 
+        map.addControl(QpObjControl); 
+        
+        //缩放到选择区域
+        pos += 25;
+        var SfdxzqyObj = document.getElementById("Sfdxzqy"); 
+        var SfdxzqyObjControl = new THtmlElementControl(SfdxzqyObj); 
+        SfdxzqyObjControl.setRight(pos); 
+        SfdxzqyObjControl.setTop(top); 
+        map.addControl(SfdxzqyObjControl); 
+        
+        pos += 25;
+        var QxsyxzObj = document.getElementById("Qxsyxz"); 
+        var QxsyxzObjControl = new THtmlElementControl(Qxsyxz); 
+        QxsyxzObjControl.setRight(pos); 
+        QxsyxzObjControl.setTop(top); 
+        map.addControl(QxsyxzObjControl); 
+        
+        pos += 25;
+        var XgfxObj = document.getElementById("Xgfx"); 
+        var XgfxObjControl = new THtmlElementControl(XgfxObj); 
+        XgfxObjControl.setRight(pos); 
+        XgfxObjControl.setTop(top); 
+        map.addControl(XgfxObjControl); 
+        
+        pos += 25;
+        var XyfxObj = document.getElementById("Xyfx"); 
+        var XyfxObjControl = new THtmlElementControl(XyfxObj); 
+        XyfxObjControl.setRight(pos); 
+        XyfxObjControl.setTop(top); 
+        map.addControl(XyfxObjControl); 
+        
+        pos += 25;
+        var SyfxObj = document.getElementById("Syfx"); 
+        var SyfxObjControl = new THtmlElementControl(SyfxObj); 
+        SyfxObjControl.setRight(pos); 
+        SyfxObjControl.setTop(top); 
+        map.addControl(SyfxObjControl); 
+        
+        pos += 25;
+        var LdfxObj = document.getElementById("Ldfx"); 
+        var LdfxObjControl = new THtmlElementControl(LdfxObj); 
+        LdfxObjControl.setRight(pos); 
+        LdfxObjControl.setTop(top); 
+        map.addControl(LdfxObjControl); 
+        
+        pos += 25;
+        var KxObj = document.getElementById("Kx"); 
+        var KxObjControl = new THtmlElementControl(KxObj); 
+        KxObjControl.setRight(pos); 
+        KxObjControl.setTop(top); 
+        map.addControl(KxObjControl); 
+        
+        pos += 25;
+        var DxObj = document.getElementById("Dx"); 
+        var DxObjControl = new THtmlElementControl(DxObj); 
+        DxObjControl.setRight(pos); 
+        DxObjControl.setTop(top); 
+        map.addControl(DxObjControl); 
+        
+        pos += 25;
+        var SsObj = document.getElementById("Ss"); 
+        var SsObjControl = new THtmlElementControl(SsObj); 
+        SsObjControl.setRight(pos); 
+        SsObjControl.setTop(top); 
+        map.addControl(SsObjControl); 
+        
+        pos += 25;
+        var QjObj = document.getElementById("Qj"); 
+        var QjObjControl = new THtmlElementControl(QjObj); 
+        QjObjControl.setRight(pos); 
+        QjObjControl.setTop(top); 
+        map.addControl(QjObjControl); 
+        
+        pos += 25;
+        var CdObj = document.getElementById("Cd"); 
+        var CdObjControl = new THtmlElementControl(CdObj); 
+        CdObjControl.setRight(pos); 
+        CdObjControl.setTop(top); 
+        map.addControl(CdObjControl); 
+        
+        
+        pos += 25;
+        var MjObj = document.getElementById("Mj"); 
+        var MjObjControl = new THtmlElementControl(MjObj); 
+        MjObjControl.setRight(pos); 
+        MjObjControl.setTop(top); 
+        map.addControl(MjObjControl); 
+        
+        pos += 25;
+        var MyObj = document.getElementById("My"); 
+        var MyObjControl = new THtmlElementControl(MyObj); 
+        MyObjControl.setRight(pos); 
+        MyObjControl.setTop(top); 
+        map.addControl(MyObjControl); 
+     
+        
+      //创建测距工具对象 
+		lineTool = new TPolylineTool(map,config); 
+		//注册测距工具绘制完成后的事件 
+		TEvent.addListener(lineTool,"draw",onDrawLine); 
+		
+		//创建测面工具对象 
+		polygonTool = new TPolygonTool(map,config); 
+		//注册测面工具绘制完成后的事件 
+		TEvent.addListener(polygonTool,"draw",onDrawPolygon); 
+        
+	} 
+	//关闭测距工具 
+	function onDrawLine(bounds,line,obj) 
+	{ 
+		lineTool.close(); 
+	} 
+	
+	//关闭测面工具 
+	function onDrawPolygon(bounds,line) 
+	{     
+		polygonTool.close(); 
+	} 
+	
+	function setCenterAndZoom() 
+	{ 
+		var lng = 121.4; 
+		var lat = 31.2; 
+		var zoom = 12; 
+		map.setCenter(new TLngLat(lng,lat));	
+	
+		map.setZoom(zoom);  //将视图切换到指定的缩放等级，中心点坐标不变  
+	}
+</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="position:absolute;width:800px; height:565px"></div> 
+	<div id="My" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;"><img src="images/漫游.bmp"></img></div> 
+	<div id="Mj" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="polygonTool.open();"><img src="images/mj.ico"></img></div> 
+	<div id="Cd" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="lineTool.open();"><img src="images/cd.ico"></img></div> 
+	<div id="Qj" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onClick="setCenterAndZoom()"><img src="images/全局.BMP"></img></div> 
+	<div id="Ss" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/搜索.BMP"></img></div> 
+	<div id="Dx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/单选.BMP"></img></div> 
+	<div id="Kx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/框选.BMP"></img></div> 
+	<div id="Ldfx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/两点分析.BMP"></img></div> 
+	<div id="Syfx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/上游分析.BMP"></img></div> 
+	<div id="Xyfx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/下游分析.BMP"></img></div> 
+	<div id="Xgfx" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/相关分析.BMP"></img></div> 
+	<div id="Qxsyxz" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/取消所有选择.BMP"></img></div> 
+	<div id="Sfdxzqy" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/缩放到选择区域.BMP"></img></div> 
+	<div id="Qp" style="font-size:12px;border:solid 2px blue;background:#fff;padding:2px;line-height:16px;cursor:pointer;" onclick="map.zoomIn();"><img src="images/全屏.BMP"></img></div> 
+	
+	<div style="position:absolute;left:620px;"> </div> 
+</body> 
+</html>
